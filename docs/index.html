@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Unsubscribe Page</h1>
+    <div id="responseMessage"></div>
     <script>
         // Extract query parameters from the initial link
         const urlParams = new URLSearchParams(window.location.search);
@@ -25,11 +26,15 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    console.log('Unsubscribe successful.');
-                    // You can perform additional actions here if required
+                    return response.text(); // Get the response text
                 } else {
-                    console.error('Unsubscribe failed.');
+                    return 'Unsubscribe failed.';
                 }
+            })
+            .then(function(responseText) {
+                // Display the response message on the page
+                const responseMessageElement = document.getElementById('responseMessage');
+                responseMessageElement.textContent = responseText;
             })
             .catch(function(error) {
                 console.error('Error:', error);
