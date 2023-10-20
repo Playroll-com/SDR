@@ -19,8 +19,21 @@
 
         // Function to trigger the unsubscribe action
         function unsubscribe() {
-            // Redirect the user to the final unsubscribe link
-            window.location.href = unsubscribeLink;
+            // Send a GET request to the unsubscribe link
+            fetch(unsubscribeLink, {
+                method: 'GET'
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log('Unsubscribe successful.');
+                    // You can perform additional actions here if required
+                } else {
+                    console.error('Unsubscribe failed.');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
         }
     </script>
     <button onclick="unsubscribe()">Unsubscribe</button>
