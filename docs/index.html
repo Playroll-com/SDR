@@ -21,28 +21,16 @@
         // Function to trigger the unsubscribe action
         function unsubscribe() {
             // Send a GET request to the unsubscribe link
-            fetch(unsubscribeLink, {
-                method: 'GET'
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    return 200;
-                } else {
-                    return 400;
-                }
-            })
-            .then(function(responseCode) {
-                // Display the response message on the page
-                var responseMsg = "Successfully unsubscribed";
-                if (responseCode == 400) responseMsg = "Unsubscribe failed";
-                const responseMessageElement = document.getElementById('responseMessage');
-                responseMessageElement.textContent = responseMsg;
-            })
-            .catch(function(error) {
-                const responseMessageElement = document.getElementById('responseMessage');
-                responseMessageElement.textContent = `Error: ${error}`;
-                console.error('Error:', error);
-            });
+
+            const responseMessageElement = document.getElementById('responseMessage');
+            var res = "Successfully unsubscribed";
+            try {
+                var response = fetch(unsubscribeLink, {method: 'GET'})
+            }
+            catch (error) {
+                res = "Error: " + error;
+            }
+            responseMessageElement.textContent = res;
         }
     </script>
     <button onclick="unsubscribe()">Unsubscribe</button>
