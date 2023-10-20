@@ -2,35 +2,79 @@
 <html>
 <head>
     <title>Unsubscribe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #responseMessage {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
-    <h1>Unsubscribe Page</h1>
+    <div class="container">
+        <h1>Unsubscribe</h1>
+        <p>Click the "Unsubscribe" button to proceed.</p>
+        <button onclick="unsubscribe">Unsubscribe</button>
+        <p id="responseMessage"></p>
+    </div>
+
     <script>
         // Extract query parameters from the initial link
         const urlParams = new URLSearchParams(window.location.search);
-        const eurl= urlParams.get('eurl');
-        
+        const eurl = urlParams.get('eurl');
+
         // Create the final unsubscribe link with query parameters
         const unsubscribeLink = eurl;
-        
+
         // Function to trigger the unsubscribe action
         function unsubscribe() {
             // Hide the button
             const button = document.querySelector('button');
             button.style.display = 'none';
-            
+
             // Send a GET request to the unsubscribe link
             const responseMessageElement = document.getElementById('responseMessage');
             var res = "Successfully unsubscribed";
             try {
-                var response = fetch(unsubscribeLink, {method: 'GET'});
+                var response = fetch(unsubscribeLink, { method: 'GET' });
             } catch (error) {
                 res = "Error: " + error;
             }
             responseMessageElement.textContent = res;
         }
     </script>
-    <button onclick="unsubscribe()">Unsubscribe</button>
-    <div id="responseMessage"></div>
 </body>
 </html>
