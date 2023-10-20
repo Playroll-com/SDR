@@ -26,17 +26,21 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    return response.text(); // Get the response text
+                    return 200;
                 } else {
-                    return 'Unsubscribe failed.';
+                    return 400;
                 }
             })
-            .then(function(responseText) {
+            .then(function(responseCode) {
                 // Display the response message on the page
+                var responseMsg = "Successfully unsubscribed";
+                if (responseCode == 400) responseMsg = "Unsubscribe failed";
                 const responseMessageElement = document.getElementById('responseMessage');
-                responseMessageElement.textContent = responseText;
+                responseMessageElement.textContent = responseMsg;
             })
             .catch(function(error) {
+                const responseMessageElement = document.getElementById('responseMessage');
+                responseMessageElement.textContent = `Error: ${error}`;
                 console.error('Error:', error);
             });
         }
