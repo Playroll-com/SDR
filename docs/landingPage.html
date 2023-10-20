@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unsubscribe</title>
+</head>
+<body>
+    <h1>Unsubscribe Page</h1>
+    <script>
+        // Extract query parameters from the initial link
+        const urlParams = new URLSearchParams(window.location.search);
+        // const esubject = urlParams.get('esubject');
+        // const eto = urlParams.get('eto');
+        // const edraftId = urlParams.get('edraftId');
+        // const estage = urlParams.get('estage');
+        const eurl= urlParams.get('eurl');
+
+        // Create the final unsubscribe link with query parameters
+        const unsubscribeLink = eurl;
+
+        // Function to trigger the unsubscribe action
+        function unsubscribe() {
+            // Redirect the user to the final unsubscribe link
+            window.location.href = unsubscribeLink;
+        }
+    </script>
+    <button onclick="unsubscribe()">Unsubscribe</button>
+</body>
+</html>
